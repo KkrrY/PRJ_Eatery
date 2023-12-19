@@ -6,8 +6,15 @@
 </head>
 <body>
 <h1>Welcome to...</h1>
-<!-- thymeleaf can only parse expression language params -->
+
 <div>
-    <a th:href="@{/register}"> Registration </a> </div>
+    <div><a th:href="@{/login}"> Log In</a> </div>
+    <div><a th:href="@{/logout}"> Log Out</a> </div>
+    <div> <a th:href="@{/register}"> Registration </a> </div>
+
+    <div><a th:href="@{/design}"> design your burger</a> </div>
+    <div><a th:href="@{/dishes}"> order ready dishes in our eatery</a> </div>
+    <div><a th:href="@{/recent-orders/orders}"> your recent orders </a> </div>
+</div>
 </body>
 </html>

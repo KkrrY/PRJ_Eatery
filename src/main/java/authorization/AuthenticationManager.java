@@ -1,4 +1,4 @@
-package com.example.prj_eatery;
+package authorization;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

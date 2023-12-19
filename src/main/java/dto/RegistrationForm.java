@@ -1,5 +1,6 @@
-package com.example.prj_eatery;
+package dto;
 
+import entity.UserEntity;
 import lombok.Data;
 import org.springframework.security.crypto.password.PasswordEncoder;
 

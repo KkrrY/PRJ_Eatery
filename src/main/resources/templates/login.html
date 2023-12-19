@@ -12,6 +12,7 @@
 </div>
 <p>New here? Click
   <a th:href="@{/register}">here</a> to register.</p>
+<p>Login to get 5% discount for all purchases! </p>
 <!--th:action error convinced with wrong context path shows up errors. CONTEXT PATH is necessary
 Missing Context Path: The context path, which is important for forming the complete URL,
 was not included in the form's action attribute.-->
@@ -28,8 +29,9 @@ was not included in the form's action attribute.-->
 </form>
 
 <form method="POST" th:action="@{/logout}">
-  <input type="submit" value="Logout"/>
+  <input type="submit" value="Logout"></input>
 </form>
+<a th:href="@{/}">continue without login</a>
 
 </body>
 </html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Eatery</title>
+  <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+
+<body>
+
+<form method="POST" th:action="@{/logout}" id="logoutForm">
+  <input type="submit" value="Reset your order"/>
+</form>
+
+<!--/*@thymesVar id="order" type="entity.Orders"*/-->
+<form method="POST" th:action="@{/orders}" th:object="${order}"
+      id="orderForm">
+  <h1>Order your burger creations!</h1>
+
+  <img th:src="@{/images/TacoCloud.png}"/>
+
+  <h3>Your burgers in this order:</h3>
+  <a th:href="@{/design}" id="anotherBurger">Design another burger</a><br/>
+  <ul>
+    <li th:each="burger : ${order.getBurgers}">
+      <span th:text="${burger.name}">burger name</span></li>
+  </ul>
+
+  <h3>Your dishes in this order:</h3>
+  <a th:href="@{/dishes}" id="anotherDish">Add another dish</a><br/>
+  <ul>
+    <li th:each="dish : ${order.getDishes()}">
+      <span th:text="${dish.name}">dish name</span></li>
+  </ul>
+
+  <div th:if="${#fields.hasErrors()}">
+        <span class="validationError">
+        Please correct the problems below and resubmit.
+        </span>
+  </div>
+
+  <h3>Deliver my burger masterpieces to...</h3>
+  <label for="customerFullName">Your Full Name: </label>
+  <input type="text" th:field="*{customerFullName}"/>
+  <br/>
+
+  <label for="deliveryStreet">Street address: </label>
+  <input type="text" th:field="*{deliveryStreet}"/>
+  <br/>
+
+  <label for="deliveryCity">City: </label>
+  <input type="text" th:field="*{deliveryCity}"/>
+  <br/>
+
+  <label for="deliveryCountry">Country: </label>
+  <input type="text" th:field="*{deliveryState}"/>
+  <br/>
+
+  <label for="deliveryZip">Zip code: </label>
+  <input type="text" th:field="*{deliveryZip}"/>
+  <br/>
+
+  <label for="orderName">ORDER NAME: </label>
+  <input type="text" th:field="*{orderName}"/>
+  <br/>
+
+  <h3>Your discount is: <span th:text="${discount}"></span> % </h3>
+  <h3>Your sum to pay is:
+  <span th:text="${order.totalPrice}"> SUM TO PAY</span>
+   UAH </h3>
+  <br/>
+
+
+  <h3>Here's how I'll pay...</h3>
+  <label for="ccNumber" >Credit Card #: </label>
+  <input type="text" th:field="*{ccNumber}"/>
+  <!-- S14 validating the error-->
+  <span class="validationError"
+        th:if="${#fields.hasErrors('ccNumber')}"
+        th:errors="*{ccNumber}">CC Num Error</span>
+  <br/>
+
+  <label for="ccExpiration">Expiration: </label>
+  <input type="text" th:field="*{ccExpiration}"/>
+  <br/>
+
+  <label for="ccCVV">CVV: </label>
+  <input type="text" th:field="*{ccCVV}"/>
+  <span class="validationError"
+        th:if="${#fields.hasErrors('ccCVV')}"
+        th:errors="*{ccCVV}">CVV Error</span>
+  <br/>
+
+  <input type="submit" value="Submit Order"/>
+</form>
+
+</body>
+</html>

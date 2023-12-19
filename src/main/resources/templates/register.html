@@ -6,9 +6,9 @@
 </head>
 <body>
 <h1>Register</h1>
-<!--/*@thymesVar id="registerForm" type="com.example.prj_eatery.RegistrationForm"*/-->
+<!--/*@thymesVar id="registerForm" type="dto.RegistrationForm"*/-->
 <form method="POST" th:action="@{/register}" id="registerForm" th:object="${registerForm}">
-  <label for="username">Username: </label>
+  <label for="username">Email : </label>
   <input type="text" name="username"/><br/>
   <label for="password">Password: </label>
   <input type="password" name="password"/><br/>

@@ -1,5 +1,6 @@
-package com.example.prj_eatery;
+package authorization;
 
+import entity.UserEntity;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import repository.UserRepository;
 
 @Configuration
 class CustomAuthenticationProvider implements AuthenticationProvider {

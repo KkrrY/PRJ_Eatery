@@ -1,8 +1,10 @@
-package com.example.prj_eatery;
+package authorization;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
@@ -12,18 +14,29 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private final CustomAuthenticationProvider authenticationProvider;
+    @Autowired
+    public SecurityConfig(CustomAuthenticationProvider authenticationProvider) {
+        this.authenticationProvider = authenticationProvider;
+    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
+                .authenticationProvider( authenticationProvider )
                 .authorizeHttpRequests((authorizeHttpRequests) ->
                                 authorizeHttpRequests
-                                        //.requestMatchers("/design", "/orders", "/orders/current").hasAnyRole("USER")
-                                        .anyRequest().permitAll() //S37 change
-//                                .requestMatchers("/design", "/orders").hasRole("USER")
-//                                .requestMatchers("/register").permitAll() // Allow access to /register and /login for ALL users who follow this url
-//                                .requestMatchers("/", "/**").hasRole("USER")
-
+                                        .requestMatchers(
+                                                "/register",
+                                                "/",
+                                                "/design",
+                                                "/dishes",
+                                                "/orders",
+                                                "/orders/current"
+                                        ).permitAll()
+                                        .requestMatchers("/recent-orders/orders").hasRole("USER")
+                                        .anyRequest().hasRole("ADMIN")
 
                 )
                 .formLogin(form -> form

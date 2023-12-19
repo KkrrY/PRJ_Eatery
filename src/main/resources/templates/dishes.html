@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Eatery</title>
+    <!-- <link rel="stylesheet" th:href="@{/styles.css}" /> -->
+</head><body>
+
+<h1>Choose your dish!</h1>
+
+<!--/*@thymesVar id="dish" type="entity.Dishes"*/-->
+
+<div><a th:href="@{/design}"> go to burgers design </a> </div>
+
+<form method="post" th:action="@{/dishes}" th:object="${dish}">
+    <div class="grid">
+        <div class="dish-group" id="dishes">
+            <h3>Choose the dish you want to take:</h3>
+            <div th:each="dishItem : ${dishes}">
+                <!-- refactor to directly pass object -->
+                <input type="radio" th:id="'dish' + ${dishItem.id}" th:name="dishId" th:value="${dishItem.id}" />
+                <label th:for="'dish' + ${dishItem.id}" th:text="${dishItem.name + ' price: ' + dishItem.price}"></label><br/>
+            </div>
+        </div>
+    </div>
+    <div>
+        <br/>
+        form submission
+        <br/>
+        <button> Submit Your Dish</button>
+    </div>
+</form>
+</body>
+</html>
