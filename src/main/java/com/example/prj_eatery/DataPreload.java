@@ -66,21 +66,21 @@ public class DataPreload {
                     flourTortilla, groundBeef, carnitas,
                     sourCream, salsa, cheddar));
             taco1.setPrice(taco1.getIngredients().stream().mapToDouble(Ingredient::getPrice).sum() );
-            if (!dishesRepo.existsById(taco1.getId())) dishesRepo.save(taco1);
+            dishesRepo.save(taco1);
             Dishes taco2 = new Dishes("BOVBOUNTY");
             taco2.setName("Bovine Bounty");
             taco2.setIngredients(Arrays.asList(
                     cornTortilla, groundBeef, cheddar,
                     jack, sourCream));
             taco2.setPrice(taco2.getIngredients().stream().mapToDouble(Ingredient::getPrice).sum() );
-            if (!dishesRepo.existsById(taco2.getId())) dishesRepo.save(taco2);
+            dishesRepo.save(taco2);
             Dishes taco3 = new Dishes("VEGOUT");
             taco3.setName("Veg-Out");
             taco3.setIngredients(Arrays.asList(
                     flourTortilla, cornTortilla, tomatoes,
                     lettuce, salsa));
             taco3.setPrice(taco3.getIngredients().stream().mapToDouble(Ingredient::getPrice).sum() );
-            if (!dishesRepo.existsById(taco3.getId())) dishesRepo.save(taco3);
+            dishesRepo.save(taco3);
 
         };
     }
