@@ -1,20 +1,55 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
     <title>Eatery Service</title>
+    <link rel="shortcut icon" th:href="@{images/webicon.png}" />
 </head>
 <body>
-<h1>Welcome to...</h1>
 
-<div>
-    <div><a th:href="@{/login}"> Log In</a> </div>
-    <div><a th:href="@{/logout}"> Log Out</a> </div>
-    <div> <a th:href="@{/register}"> Registration </a> </div>
+<div id="preloader">
 
-    <div><a th:href="@{/design}"> design your burger</a> </div>
-    <div><a th:href="@{/dishes}"> order ready dishes in our eatery</a> </div>
-    <div><a th:href="@{/recent-orders/orders}"> your recent orders </a> </div>
 </div>
+<header class="header">
+    <div class="container">
+        <div class="logo">
+            <img th:src="@{images/webicon.png}" alt="">
+        </div>
+        <nav class="nav">
+            <!-- <a class="nav__link" href="#about">About Eatery</a> -->
+            <a class="nav__link" id="loginLink" th:href="@{/login}"> Log in</a>
+           <a class="nav__link" id="logoutLink" th:href="@{/logout}"> Log out</a>
+            <a class="nav__link" id="registrationLink" th:href="@{/register}"> Registration </a>
+            <a class="nav__link"  th:href="@{/design}"> Design your burger</a>
+            <a class="nav__link" th:href="@{/dishes}"> Order dishes</a>
+            <a class="nav__link" id="history" th:href="@{/recent-orders/orders}"> Orders history</a>
+        </nav>
+    </div>
+</header>
+<main class="main">
+    <!-- intro -->
+    <section class="intro">
+        <div class="container">
+            <div class="section__content">
+                <div class="left__part">
+                    <h1 class="intro__title">Eatery Service</h1>
+                    <p class="intro__text">Order what ever you wanted in one click</p>
+                    <a class="button" th:href="@{/dishes}">Make order</a>
+                </div>
+                <div class="right__part">
+                    <div class="into__images">
+                        <img th:src="@{/images/fastFoodSet.png}" alt="burgers with soda" />
+                    </div>
+                    <div class="figure">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+<script th:src="@{/js/preloading.js}"></script>
+<script th:src="@{/js/renderNav.js}"></script>
 </body>
 </html>
