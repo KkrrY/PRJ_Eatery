@@ -1,0 +1,9 @@
+:root{
+    --bg-color:#262626;
+    --text-default:#fff;
+    --glass-color:rgba(255,255,255,0.4);
+    --black-shadow:rgba(0,0,0,0.3);
+    --accent-color: #ec4646;
+    --form--bg:#bbb6b6;
+    --dark-accent: #ff0000;
+}

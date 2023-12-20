@@ -1,0 +1,11 @@
+/**/
+.figure-1{
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: "";
+    background: var(--accent-color);
+    width: 50vw;
+    height: 100vh;
+    z-index: -2;
+}

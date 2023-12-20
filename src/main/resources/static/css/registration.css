@@ -1,0 +1,25 @@
+@import url("normalise.css");
+@import "circles.css";
+@import "form.css";
+@import "colors.css";
+body{
+    background: var(--bg-color);
+    color: var(--text-default);
+    overflow-x: hidden;
+}
+.form:before{
+    top: 85%;
+}
+.registration__form{
+    width: 40vw;
+}
+.form__title:after{
+    left: 70%;
+}
+.form__group{
+    margin-top: 3%;
+}
+
+.figure-1{
+    left: 0;
+}

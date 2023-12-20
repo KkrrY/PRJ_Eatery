@@ -1,0 +1,186 @@
+@import url("normalise.css");
+@import "preloader.css";
+@import url("https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap");
+@import "colors.css";
+
+/* try to make scroll smooth */
+html {
+    scroll-behavior: smooth;
+}
+
+/* body color */
+body {
+    background-color: var(--bg-color);
+    font-family: "Sawarabi Gothic", sans-serif;
+}
+
+/* header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 10;
+    background: var(--glass-color);
+}
+.header .container {
+    display: flex;
+    padding: 2% 10%;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo img {
+    width: 3vw;
+    height: auto;
+}
+.nav__link {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-left: 1.2vh;
+    scroll-behavior: smooth;
+}
+
+/* hide scrollbar for body and main content */
+:is(body, .main)::-webkit-scrollbar {
+    display: none;
+}
+body,
+.main {
+    scrollbar-width: none;
+}
+
+/* main section */
+.main {
+    position: relative;
+}
+/* intro section */
+.intro {
+    width: 100vw;
+    height: 100vh;
+}
+.section__content {
+    display: flex;
+    justify-content: space-between;
+    padding: 3% 5%;
+}
+.left__part {
+    text-align: center;
+}
+
+.intro__title {
+    padding-top: 15vw;
+    font-size: 3.5em;
+    background: var(--accent-color);
+    color: transparent;
+    -webkit-background-clip: text;
+}
+
+.button {
+// margin-top: 5%;
+    font-size: 1.2em;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 1% 5%;
+    border-radius: 0.3em;
+    transition: all 0.2s linear;
+}
+.button:hover {
+    transform: scale(1.2);
+}
+
+.intro__text {
+    margin-bottom: 10%;
+    letter-spacing: 0.1em;
+    font-size: 1.3em;
+    color: var(--text-default);
+}
+.right__part {
+    max-width: 50vw;
+    position: relative;
+}
+.figure {
+    display: block;
+    position: absolute;
+    top: -15%;
+    right: -35vw;
+    background: var(--accent-color);
+    transform: skewX(-30deg);
+    width: 75vw;
+    height: 101vh;
+    opacity: 0.7;
+    border-top-left-radius: 50%;
+    z-index: -1;
+}
+
+.right__part .into__images img {
+    transform: translateX(10%) translateY(45%);
+}
+
+/*  */
+/*default section */
+.section {
+    height: 100vh;
+}
+.section__title {
+    font-size: 2.5em;
+    text-align: center;
+}
+/* container */
+/*.container {*/
+/*    padding: 3% 10%;*/
+/*}*/
+
+/* into images size */
+.into__images img {
+    margin-top: -30%;
+    max-width: 40vw;
+    height: auto;
+}
+
+/* join section */
+.join__title {
+    padding-top: 6%;
+    padding-bottom: 15%;
+}
+.join__content {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* highlighted text */
+.highlighted {
+    position: relative;
+    font-family: "Sawarabi Gothic", sans-serif;
+}
+.highlighted::after {
+    display: block;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    opacity: 0.7;
+    background: var(--accent-color);
+    transform: scale(1.07, 1.05) skewX(15deg);
+    /* color: var(--bg-color); */
+}
+
+/* circle */
+.circle {
+    width: 30vw;
+    height: 30vw;
+    border-radius: 50%;
+    content: "";
+    position: absolute;
+    z-index: -1;
+}
+.red-circle {
+    background: var(--accent-color);
+}
+
+
+.hidden{
+    display: none;
+}

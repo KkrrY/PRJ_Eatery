@@ -1,5 +1,57 @@
+@import "normalise.css";
+@import "form.css";
+@import "circles.css";
+@import "popup.css";
+@import "colors.css";
 body{
-    background: #262626;
-    color: whitesmoke;
+    background: var(--bg-color);
+    color: var(--text-default);
+    overflow-x: hidden;
+}
 
+
+
+
+.login__form{
+    height: 50vh;
+    width: 30vw;
+}
+.red__text{
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+/* references for registration*/
+.bottom-nav{
+    margin-top: 4%;
+    display: flex;
+    justify-content: space-between;
+    width: 40vw;
+}
+.button__wrapper{
+    border: 1px solid var(--form--bg);
+    border-radius: 2em;
+    font-family: "Segoe UI";
+    font-size: 1.2em;
+    font-weight: 600;
+    padding: 3% 5%;
+    transition: all .3s linear;
+}
+.button__wrapper:hover{
+    background: var(--form--bg);
+    color: var(--bg-color);
+}
+
+.button__wrapper:first-child{
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+.button__wrapper:first-child:hover{
+    background: var(--accent-color);
+    color: var(--bg-color);
+}
+
+.new-user__link{
+    color: var(--accent-color);
+    font-weight: 600;
 }

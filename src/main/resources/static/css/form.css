@@ -1,0 +1,156 @@
+/*form*/
+.form__container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    padding: 1% 5%;
+    justify-content: center;
+    align-items: center;
+}
+.form{
+    padding: 2% 4% 1%;
+    border: none;
+    border-radius: .4em;
+    background: var(--form--bg);
+    backdrop-filter: blur(1em);
+    box-shadow: 0 0 40px var(--black-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    font-family: "Segoe UI";
+    position: relative;
+
+}
+.form:after, .form:before{
+    display: block;
+    position: absolute;
+    content: "";
+    background: var(--glass-color);
+    box-shadow: 0 0 20px var(--black-shadow);
+    width: 5em;
+    border-radius: .5em;
+    height: 5em;
+
+}
+
+.form:after{
+    top: -5%;
+    left: 3%;
+    animation: movePseudoElems 2s linear infinite;
+}
+
+.form:before{
+    top: 77%;
+    left: 78%;
+    animation: movePseudoElems 2s linear infinite;
+    animation-delay: 1s;
+}
+
+@keyframes movePseudoElems {
+    0%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(30%);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+
+.form__title{
+    font-size: 2em;
+    position: relative;
+    font-family: "Segoe UI";
+}
+.form__title:after{
+    position: absolute;
+    display: block;
+    content: "";
+    background: var(--accent-color);
+    width: 1.2em;
+    height: .1em;
+    border-radius: .4em;
+    top: 100%;
+    left: 60%;
+}
+
+.discount__info{
+    margin-top: 4%;
+    margin-bottom: 5%;
+}
+
+.form__group{
+    margin-top: 4%;
+    position: relative;
+}
+
+.input{
+    width: 100%;
+    padding:  2%;
+    background: transparent;
+    outline: none;
+    font-size: 1.2em;
+    border: 1px solid var(--text-default);
+    border-radius: .3em;
+    color: var(--text-default);
+}
+.input__label{
+    position: absolute;
+    top: 13%;
+    left: 3%;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition: all .3s linear;
+}
+.form__group input:is(:focus, :valid) ~ .input__label{
+    color: var(--accent-color);
+    background: var(--form--bg);
+    transform: translateY(-90%);
+    font-size: .9em;
+}
+.form__group input:is(:focus, :valid){
+    border-color:var(--accent-color);
+    color: var(--accent-color);
+}
+
+.input__icon{
+    position: absolute;
+    top: 13%;
+    left: 90%;
+}
+.input__icon i{
+    font-size: 1.2em;
+    transition: all .2s linear;
+}
+
+.form__group input:is(:focus, :valid)~ .input__icon{
+    color: var(--accent-color);
+}
+.showPass:hover{
+    cursor: pointer;
+}
+
+.form__button{
+    margin-top: 8%;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--accent-color);
+    outline: none;
+    border: 1px solid var(--accent-color);
+    background: transparent;
+    padding: 2% 5%;
+    border-radius: .4em;
+    transition: all .2s linear;
+}
+
+
+.form__button:hover{
+    background: var(--accent-color);
+    color: var(--form--bg);
+    cursor: pointer;
+}
+

@@ -1,0 +1,139 @@
+@import "normalise.css";
+@import "preloader.css";
+@import "colors.css";
+
+
+body{
+    background: var(--bg-color);
+    color: var(--text-default);
+    font-family: "Segoe UI";
+}
+
+.main__title{
+    text-align: center;
+    font-size: 2em;
+    padding-top: 1%;
+}
+.nav{
+    width: 20vw;
+    margin: 1% auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav__link{
+    font-size: 1.2em;
+    text-transform: uppercase;
+    margin-right: 2%;
+    white-space: nowrap;
+    transition: all .3s linear;
+}
+.nav__link:hover{
+    color: var(--accent-color);
+}
+/*dishes form*/
+
+.dish__form{
+    margin: 4% auto;
+    width: 40vw;
+    flex-wrap: wrap;
+
+}
+.from__title{
+    font-family: Gabriola;
+    font-size: 3em;
+    text-align: center;
+}
+.dish__options{
+    display: flex;
+     column-gap: 5%;
+}
+
+input[type="radio"]{
+    display: none;
+}
+.dishes__choice{
+    padding: 3%;
+    border-radius: .3em;
+    transition: all .3s linear;
+}
+.dishes__choice:hover,
+.dishes__choice--active{
+    background: var(--glass-color);
+    cursor: pointer;
+    cursor: pointer;
+    color: white;
+
+}
+.dish__label{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dish__label img{
+    max-width: 10vw;
+    height: fit-content;
+}
+
+.dish__title{
+    font-family: Georgia;
+    font-size: 1.5em;
+    text-align: center;
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--dark-accent);
+}
+
+.dishes__choice:hover .dish__title,
+.dishes__choice--active .dish__title{
+    color: var(--text-default);
+}
+
+.dish__price{
+    margin-top: 2%;
+    font-size: 1.1em;
+}
+.button__wrapper{
+    display: flex;
+justify-content: center;
+    margin-top: 5%;
+}
+
+.form__button{
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    font-size: 1.3em;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 2% 3%;
+    border-radius: .4em;
+    color: var(--accent-color);
+    white-space: nowrap;
+    transition: all .2s linear;
+
+}
+.form__button:hover{
+    cursor: pointer;
+    background: var(--accent-color);
+    color: var(--text-default);
+}
+
+/*bg*/
+.bg{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -2;
+}
+.video_overlay{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: var(--black-shadow);
+    backdrop-filter: blur(1em);
+    z-index: -1;
+}
