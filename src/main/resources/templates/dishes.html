@@ -30,14 +30,16 @@
             <div class="dish-group" id="dishes">
                 <h3 class="from__title">Dishes</h3>
                 <div class="dish__options">
-                    <div class="dishes__choice" th:each="dishItem : ${dishes}">
+                    <div class="dishes__choice slide" th:each="dishItem : ${dishes}">
                         <input type="radio" th:id="'dish' + ${dishItem.id}" th:name="dishId" th:value="${dishItem.id}" />
                         <label th:for="'dish' + ${dishItem.id}" class="dish__label" >
                             <img th:src="${dishItem.imageSrc}">
                             <p class="dish__title" th:text="${dishItem.name }"></p>
-                            <p class="dish__title" th:text="${dishItem.description }"></p>
+
+                            <p class="dish__description" th:text="${dishItem.description }"></p>
                             <p class="dish__price" th:text="${'Price: ' + dishItem.price + '₴'}"></p>
                         </label>
+
                     </div>
                 </div>
             </div>
@@ -54,5 +56,6 @@
 
 <script th:src="@{/js/preloading.js}"></script>
 <script th:src="@{/js/checkedRadio.js}"></script>
+
 </body>
 </html>
