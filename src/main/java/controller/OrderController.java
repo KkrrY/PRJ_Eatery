@@ -73,7 +73,6 @@ public class OrderController {
         }
         order.getBurgers().forEach(i -> burgerRepo.save(i)); //Did to avoid org.hibernate.TransientObjectException: object references an unsaved transient instance - save the transient instance before flushing: entity.Burger
         order.getDishOrder().forEach(i -> dishesRepo.save(i));
-        order.getDishOrder().forEach(i -> System.out.println(i.getName()));
 
         order.setUser(user);
         orderRepo.save(order);
