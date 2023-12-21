@@ -24,7 +24,7 @@ public class Dishes { //A class ( JPA table ) made for storing ready-made taco`s
 
     @Column(unique = true)
     @NotNull
-    @Size(min=5, message="Name must be at least 5 characters long")
+    @Size(min=1, message="Name must be at least 5 characters long")
     private String name;
 
     private Double price;
@@ -35,6 +35,8 @@ public class Dishes { //A class ( JPA table ) made for storing ready-made taco`s
     @Size(min=1, message="You must choose at least 1 ingredient")
     @ManyToMany (targetEntity = Ingredient.class)
     private List<Ingredient> ingredients;
+
+    private String imageSrc;
 
     public Dishes(String id) {
         this.id = id;

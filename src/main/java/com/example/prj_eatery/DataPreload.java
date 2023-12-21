@@ -60,26 +60,29 @@ public class DataPreload {
             repo.save(sourCream);
             repo.save(ketchup);
 
-            Dishes taco1 = new Dishes("CARNIVORE");
-            taco1.setName("Carnivore");
+            Dishes taco1 = new Dishes("TACO");
+            taco1.setName("taco");
             taco1.setIngredients(Arrays.asList(
                     flourTortilla, groundBeef, carnitas,
                     sourCream, salsa, cheddar));
             taco1.setPrice(taco1.getIngredients().stream().mapToDouble(Ingredient::getPrice).sum() );
+            taco1.setImageSrc("https://interactive.bonappetit.com/tacos/Taco-Grid-Tripas.9af29e68.png");
             dishesRepo.save(taco1);
-            Dishes taco2 = new Dishes("BOVBOUNTY");
-            taco2.setName("Bovine Bounty");
+            Dishes taco2 = new Dishes("MISO SOUP");
+            taco2.setName("Miso-soup");
             taco2.setIngredients(Arrays.asList(
                     cornTortilla, groundBeef, cheddar,
                     jack, sourCream));
             taco2.setPrice(taco2.getIngredients().stream().mapToDouble(Ingredient::getPrice).sum() );
+            taco2.setImageSrc("https://static.vecteezy.com/system/resources/previews/026/758/030/original/miso-soup-with-ai-generated-free-png.png");
             dishesRepo.save(taco2);
-            Dishes taco3 = new Dishes("VEGOUT");
-            taco3.setName("Veg-Out");
+            Dishes taco3 = new Dishes("PIZZA");
+            taco3.setName("Piza");
             taco3.setIngredients(Arrays.asList(
                     flourTortilla, cornTortilla, tomatoes,
                     lettuce, salsa));
             taco3.setPrice(taco3.getIngredients().stream().mapToDouble(Ingredient::getPrice).sum() );
+            taco3.setImageSrc("https://pizza-leopoli.lviv.ua/wp-content/uploads/2021/03/about-02-img-1.png");
             dishesRepo.save(taco3);
 
         };
