@@ -51,6 +51,24 @@ END //
 DELIMITER ;
 CALL ProcessBurgers();
 
+
+CREATE VIEW order_view AS
+SELECT
+    o.id AS order_id,
+    o.order_name,
+    o.placed_at,
+    o.total_price,
+    b.created_at,
+    b.name AS burger_name,
+    b.id AS burger_id,
+    d.dish_id AS dish_id,
+    rd.name as dish_name
+
+FROM orders o
+         JOIN burger b ON o.id = b.order_id
+         JOIN dish d on o.id = d.order_id
+         JOIN ready_dishes rd on rd.name = d.dish_id ;
+
 drop procedure ProcessBurgers;
 
 CREATE VIEW order_view AS

@@ -35,6 +35,7 @@
                         <label th:for="'dish' + ${dishItem.id}" class="dish__label" >
                             <img th:src="${dishItem.imageSrc}">
                             <p class="dish__title" th:text="${dishItem.name }"></p>
+                            <p class="dish__title" th:text="${dishItem.description }"></p>
                             <p class="dish__price" th:text="${'Price: ' + dishItem.price + '₴'}"></p>
                         </label>
                     </div>

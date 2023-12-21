@@ -31,10 +31,8 @@ public class Dishes { //A class ( JPA table ) made for storing ready-made taco`s
 
     private Date createdAt = new Date();
 
-    @NotNull
-    @Size(min=1, message="You must choose at least 1 ingredient")
-    @ManyToMany (targetEntity = Ingredient.class)
-    private List<Ingredient> ingredients;
+    @Lob
+    private String description;
 
     private String imageSrc;
 

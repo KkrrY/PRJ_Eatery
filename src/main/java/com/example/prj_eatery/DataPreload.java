@@ -60,30 +60,24 @@ public class DataPreload {
             repo.save(sourCream);
             repo.save(ketchup);
 
-            Dishes taco1 = new Dishes("TACO");
-            taco1.setName("taco");
-            taco1.setIngredients(Arrays.asList(
-                    flourTortilla, groundBeef, carnitas,
-                    sourCream, salsa, cheddar));
-            taco1.setPrice(taco1.getIngredients().stream().mapToDouble(Ingredient::getPrice).sum() );
-            taco1.setImageSrc("https://interactive.bonappetit.com/tacos/Taco-Grid-Tripas.9af29e68.png");
-            dishesRepo.save(taco1);
-            Dishes taco2 = new Dishes("MISO SOUP");
-            taco2.setName("Miso-soup");
-            taco2.setIngredients(Arrays.asList(
-                    cornTortilla, groundBeef, cheddar,
-                    jack, sourCream));
-            taco2.setPrice(taco2.getIngredients().stream().mapToDouble(Ingredient::getPrice).sum() );
-            taco2.setImageSrc("https://static.vecteezy.com/system/resources/previews/026/758/030/original/miso-soup-with-ai-generated-free-png.png");
-            dishesRepo.save(taco2);
-            Dishes taco3 = new Dishes("PIZZA");
-            taco3.setName("Piza");
-            taco3.setIngredients(Arrays.asList(
-                    flourTortilla, cornTortilla, tomatoes,
-                    lettuce, salsa));
-            taco3.setPrice(taco3.getIngredients().stream().mapToDouble(Ingredient::getPrice).sum() );
-            taco3.setImageSrc("https://pizza-leopoli.lviv.ua/wp-content/uploads/2021/03/about-02-img-1.png");
-            dishesRepo.save(taco3);
+            Dishes taco = new Dishes("TACO");
+            taco.setName("taco");
+            taco.setDescription("Default taco with flour tortilla, beef, cheese, and spicy tomato sauce");
+            taco.setPrice(40.0);
+            taco.setImageSrc("https://interactive.bonappetit.com/tacos/Taco-Grid-Tripas.9af29e68.png");
+            dishesRepo.save(taco);
+            Dishes misoSoup = new Dishes("MISO SOUP");
+            misoSoup.setName("Miso-soup");
+            misoSoup.setDescription("Japanese soup consisting of a dashi stock into which softened miso paste is mixed");
+            misoSoup.setPrice(60.0);
+            misoSoup.setImageSrc("https://static.vecteezy.com/system/resources/previews/026/758/030/original/miso-soup-with-ai-generated-free-png.png");
+            dishesRepo.save(misoSoup);
+            Dishes pizza = new Dishes("PIZZA");
+            pizza.setName("Piza");
+            pizza.setDescription("Pepperoni pizza, consisting of salami, cheese, tomato sauce");
+            pizza.setPrice(60.0);
+            pizza.setImageSrc("https://pizza-leopoli.lviv.ua/wp-content/uploads/2021/03/about-02-img-1.png");
+            dishesRepo.save(pizza);
 
         };
     }
