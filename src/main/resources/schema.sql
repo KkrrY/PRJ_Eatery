@@ -1,3 +1,4 @@
+use eatery;
 DELIMITER //
 CREATE TRIGGER delete_related_records
     BEFORE DELETE ON orders
@@ -5,16 +6,15 @@ CREATE TRIGGER delete_related_records
 BEGIN
     DELETE FROM orders_burgers WHERE orders_id = OLD.id;
     DELETE FROM orders_dishes WHERE orders_id = OLD.id;
-    DELETE FROM burger_ingredients where burger_id IN (select id from burger where order_id = OLD.id );
-    DELETE FROM burger WHERE order_id = OLD.id;
-    DELETE FROM dish WHERE order_id = OLD.id;
+    DELETE FROM burger_ingredients where burger_id IN (select id from burgers where order_id = OLD.id );
+    DELETE FROM burgers WHERE order_id = OLD.id;
+    DELETE FROM dishes WHERE order_id = OLD.id;
 END;
 //
 DELIMITER ;
 
 
 DELIMITER //
-
 CREATE PROCEDURE ProcessBurgers()
 BEGIN
     -- Declare variables
@@ -24,7 +24,7 @@ BEGIN
 
     -- Declare the cursor
     DECLARE burger_cursor CURSOR FOR
-        SELECT id, name, order_id FROM burger;
+        SELECT id, name, order_id FROM burgers;
 
     -- Declare handler for cursor not found
     DECLARE CONTINUE HANDLER FOR NOT FOUND
@@ -50,3 +50,22 @@ END //
 
 DELIMITER ;
 CALL ProcessBurgers();
+
+drop procedure ProcessBurgers;
+
+CREATE VIEW order_view AS
+SELECT
+    o.id AS order_id,
+    o.order_name,
+    o.placed_at,
+    o.total_price,
+    b.created_at,
+    b.name AS burger_name,
+    b.id AS burger_id,
+    d.dish_id AS dish_id,
+    rd.name as dish_name
+
+FROM orders o
+         JOIN burgers b ON o.id = b.order_id
+         JOIN ordered_dishes d on o.id = d.order_id
+         JOIN dishes rd on rd.name = d.dish_id ;
