@@ -73,17 +73,13 @@ public class Orders implements Serializable {
     @ManyToMany(targetEntity= Burger.class)
     private List<Burger> burgers = new ArrayList<>();
 
-    @ManyToMany(targetEntity= Dishes.class)
-    private List<Dishes> dishes = new ArrayList<>();
 
-    @OneToMany(targetEntity= DishOrder.class)
-    private List<DishOrder> dishOrder = new ArrayList<>();
+    @ManyToMany(targetEntity= Dishes.class)
+    private List<Dishes> dishOrder = new ArrayList<>();
+    public void addDish(Dishes dishOrder) {this.dishOrder.add(dishOrder);}
 
     public void addTaco(Burger design) {
         this.burgers.add(design);
-    }
-    public void addDish(Dishes dish) {
-        this.dishes.add(dish);
     }
 
     @PrePersist

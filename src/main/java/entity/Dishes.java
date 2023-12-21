@@ -36,6 +36,10 @@ public class Dishes { //A class ( JPA table ) made for storing ready-made taco`s
 
     private String imageSrc;
 
+    //Non-necessary relation (they're set one-sided as usual)
+//    @ManyToMany(targetEntity = Orders.class)
+//    private List<Orders> orders;
+
     public Dishes(String id) {
         this.id = id;
     }

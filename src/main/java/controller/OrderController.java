@@ -1,7 +1,6 @@
 package controller;
 
 import authorization.CustomUserDetails;
-import entity.DishOrder;
 import entity.UserEntity;
 import entity.Orders;
 import jakarta.validation.Valid;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
-import repository.DishOrderRepository;
 import repository.DishesRepository;
 import repository.OrderRepository;
 import repository.BurgerRepository;
@@ -25,9 +23,9 @@ public class OrderController {
 
     private OrderRepository orderRepo;
     private BurgerRepository burgerRepo;
-    private DishOrderRepository dishesRepo;
+    private DishesRepository dishesRepo;
 
-    public OrderController(OrderRepository orderRepo, BurgerRepository burgerRepo, DishOrderRepository dishesRepo) {
+    public OrderController(OrderRepository orderRepo, BurgerRepository burgerRepo, DishesRepository dishesRepo) {
         this.orderRepo = orderRepo;
         this.burgerRepo = burgerRepo;
         this.dishesRepo = dishesRepo;
@@ -75,14 +73,12 @@ public class OrderController {
         }
         order.getBurgers().forEach(i -> burgerRepo.save(i)); //Did to avoid org.hibernate.TransientObjectException: object references an unsaved transient instance - save the transient instance before flushing: entity.Burger
         order.getDishOrder().forEach(i -> dishesRepo.save(i));
+        order.getDishOrder().forEach(i -> System.out.println(i.getName()));
 
         order.setUser(user);
         orderRepo.save(order);
         order.getBurgers().forEach(i -> i.setOrder(order) ); //update
         burgerRepo.saveAll(order.getBurgers());
-        order.getDishes().forEach(
-                i -> dishesRepo.save(new DishOrder( i , order  ) )
-        );
         dishesRepo.saveAll(order.getDishOrder());
         sessionStatus.setComplete();
 

@@ -38,7 +38,7 @@
      <ul class="burger-list">
        <li th:each="burger : ${order.getBurgers}">
          <span th:text="${burger.name}">burger name</span></li>
-       <li th:each="dish : ${order.getDishes()}">
+       <li th:each="dish : ${order.getDishOrder()}">
          <span th:text="${dish.name}">dish name</span></li>
      </ul>
    </div>

@@ -1,7 +1,6 @@
 package controller;
 
 import configuration.PageSizePropertyHolderMetaData;
-import entity.DishOrder;
 import entity.Orders;
 import entity.UserEntity;
 import org.springframework.data.domain.PageRequest;
@@ -12,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import repository.DishOrderRepository;
 import repository.OrderRepository;
 import repository.UserRepository;
 
@@ -27,13 +25,11 @@ public class UserOrderController {
 
     private final OrderRepository orderRepo;
     private final UserRepository userRepository;
-    private final DishOrderRepository dishOrderRepository;
     private PageSizePropertyHolderMetaData props;
 
-    public UserOrderController(OrderRepository orderRepo, UserRepository userRepository, DishOrderRepository dishOrderRepository, PageSizePropertyHolderMetaData props) {
+    public UserOrderController(OrderRepository orderRepo, UserRepository userRepository, PageSizePropertyHolderMetaData props) {
         this.orderRepo = orderRepo;
         this.userRepository = userRepository;
-        this.dishOrderRepository = dishOrderRepository;
         this.props = props;
     }
 
@@ -46,10 +42,6 @@ public class UserOrderController {
 
         Pageable pageable = PageRequest.of(0, props.getPageSize());
         List<Orders> ordersList = orderRepo.findByUserNameOrderByPlacedAtDesc(user.getUsername(), pageable);
-        ordersList.forEach(i ->
-                i.setDishOrder( dishOrderRepository.findAllByOrder(i)
-                )
-        );
 
         model.addAttribute("orders", ordersList );
 

@@ -40,7 +40,7 @@
       <ul>
 
         <li th:each="currDish : ${order.dishOrder}">
-          <p class="order__title"><i class="fa-solid fa-bowl-food"></i>Dish name: <span class="red__text" th:text="${currDish.dish.id}"></span></p>
+          <p class="order__title"><i class="fa-solid fa-bowl-food"></i>Dish name: <span class="red__text" th:text="${currDish.name}"></span></p>
 
         </li>
 

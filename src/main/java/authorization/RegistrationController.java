@@ -13,7 +13,7 @@ import repository.UserRepository;
 @RequestMapping("/register")
 public class RegistrationController {
     private UserRepository userRepo;
-    private org.springframework.security.crypto.password.PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     public RegistrationController(
