@@ -33,7 +33,7 @@
                     <div class="dishes__choice" th:each="dishItem : ${dishes}">
                         <input type="radio" th:id="'dish' + ${dishItem.id}" th:name="dishId" th:value="${dishItem.id}" />
                         <label th:for="'dish' + ${dishItem.id}" class="dish__label" >
-                            <img th:src="@{/images/taco.png}">
+                            <img th:src="${dishItem.imageSrc}">
                             <p class="dish__title" th:text="${dishItem.name }"></p>
                             <p class="dish__price" th:text="${'Price: ' + dishItem.price + '₴'}"></p>
                         </label>
