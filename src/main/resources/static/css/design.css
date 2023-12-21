@@ -129,9 +129,19 @@ body{
     gap: 5%;
     display: flex;
     justify-content: center;
+    overflow-x: scroll;
 
 }
+.checxbox__group::-webkit-scrollbar{
+    background: var(--glass-color);
+    box-shadow: inset 0 0 10px;
+    height: .3em;
+}
 
+.checxbox__group::-webkit-scrollbar-thumb{
+    background: var(--accent-color);
+    border-radius: .3em;
+}
 
 .checkbox__option label{
     position: relative;
