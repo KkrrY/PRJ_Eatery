@@ -13,7 +13,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "ready_dishes")
+@Table(name = "dishes")
 @NoArgsConstructor(access= AccessLevel.PUBLIC)
 public class Dishes { //A class ( JPA table ) made for storing ready-made taco`s user can buy
     @Id

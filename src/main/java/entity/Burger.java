@@ -15,7 +15,7 @@ are brought together, we’ll define the dish domain class, as shown next.
 
 @Data
 @Entity
-@Table(name = "Burger")
+@Table(name = "Burgers")
 public class Burger {
 
     @Id
