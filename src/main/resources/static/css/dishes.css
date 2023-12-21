@@ -34,8 +34,8 @@ body{
 /*dishes form*/
 
 .dish__form{
-    margin: 4% auto;
-    width: 40vw;
+    /*margin: 4% auto;*/
+    /*width: 40vw;*/
     flex-wrap: wrap;
 
 }
@@ -45,12 +45,13 @@ body{
     text-align: center;
 }
 .dish__options{
+    margin: 0 auto;
     display: flex;
     justify-content: center;
-    max-height: 60vh;
+    max-height: 90vh;
     overflow-y: scroll;
      column-gap: 2%;
-    max-width: 50vw;
+    width: 80vw;
     flex-wrap: wrap;
 }
 .dish__options::-webkit-scrollbar{
@@ -94,6 +95,7 @@ input[type="radio"]{
     font-size: 1.5em;
     text-align: center;
     font-weight: 600;
+    text-transform: capitalize;
     white-space: nowrap;
     color: var(--dark-accent);
 }
@@ -101,6 +103,28 @@ input[type="radio"]{
 .dishes__choice:hover .dish__title,
 .dishes__choice--active .dish__title{
     color: var(--text-default);
+}
+.dish__description{
+max-width: 20vw;
+}
+.dish__button{
+    color: var(--text-default);
+    border: 1px solid var(--text-default);
+    border-radius: .3em;
+    padding: 2%;
+    background: transparent;
+    outline: none;
+    font-size: 1.2em;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    font-weight: 600;
+    transition: all .3s linear;
+}
+.dish__button:hover{
+    cursor: pointer;
+    color: #730606;
+    border-color: #730606;
+
 }
 
 .dish__price{
@@ -130,6 +154,10 @@ justify-content: center;
     cursor: pointer;
     background: var(--accent-color);
     color: var(--text-default);
+}
+
+.hidden{
+    display: none;
 }
 
 /*bg*/
