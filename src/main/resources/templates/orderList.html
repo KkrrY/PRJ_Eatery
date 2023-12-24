@@ -21,12 +21,12 @@
 <div class="list__wrapper">
   <ul class="order-list">
     <li th:each="order : ${orders}" class="order">
-      <p class="order__info"><i class="fa-solid fa-calendar-days"></i> Ordered: <span class="red__text" th:text="${order.placedAt}">DATE</span></p>
-      <p class="order__info"><i class="fa-solid fa-barcode"></i>Order name: <span class="red__text" th:text="${order.orderName}">NAME</span></p>
+      <p class="order__info"><i class="fa-solid fa-calendar-days"></i> Ordered: <span class="red__text order__date" th:text="${order.placedAt}">DATE</span></p>
+      <p class="order__info "><i class="fa-solid fa-barcode"></i>Order name: <span class="red__text" th:text="${order.orderName}">NAME</span></p>
 
-      <p class="order__info"><i class="fa-solid fa-money-check"></i>Order price: <span class="red__text" th:text="${order.totalPrice + ' UAH'}">NAME</span></p>
+      <p class="order__info"><i class="fa-solid fa-money-check"></i>Order price: <span class="red__text price" th:text="${order.totalPrice + ' UAH'}">NAME</span></p>
 
-      <p class="order__info"><i class="fa-solid fa-barcode"></i>Order status: <span class="red__text" th:text="${order.status}">STATUS</span></p>
+      <p class="order__status"> <span class="status" th:text="${order.status}">STATUS</span></p>
 
       <ul class="burgers">
 
@@ -42,14 +42,14 @@
       <ul>
 
         <li th:each="currDish : ${order.dishOrder}">
-          <p class="order__title"><i class="fa-solid fa-bowl-food"></i>Dish name: <span class="red__text" th:text="${currDish.name}"></span></p>
+          <p class="order__info"><i class="fa-solid fa-bowl-food"></i>Dish name: <span class="red__text" th:text="${currDish.name}"></span></p>
 
         </li>
 
       </ul>
 
-      <form th:action="@{'/recent-orders/cancel-order/' + ${order.id}}" method="post">
-        <button type="submit" class="cancel-button">Cancel Order</button>
+      <form class="cancel__form" th:action="@{'/recent-orders/cancel-order/' + ${order.id}}" method="post">
+        <button type="submit" class="cancel-button form__button">Cancel Order</button>
       </form>
 
     </li>
@@ -60,6 +60,7 @@
 </div>
 
 <script th:src="@{/js/preloading.js}"></script>
+<script th:src="@{/js/orderListSeting.js}"></script>
 </body>
 
 </html>
