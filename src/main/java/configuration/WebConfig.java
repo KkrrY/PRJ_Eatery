@@ -17,6 +17,7 @@ public class WebConfig implements WebMvcConfigurer {
 
         registry.addViewController("/").setViewName("home");
         registry.addViewController("/login");
+        registry.addViewController("/user-profile").setViewName("profile");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 

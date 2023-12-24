@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+<table>
+    <tbody id="userData">
+    <!-- Users' data will be displayed here -->
+    </tbody>
+</table>
+<script>
+    // Function to load user data and populate the table
+    function loadUserData() {
+        $.get("/profile", function (data) {
+            $("#userData").empty();
+            console.log(data);
+            $("#userData").append(
+                "<tr>" +
+                "<td>" + data.fullName + "</td>" +
+                "<td><input id='modelInput' value='" + data.username + "'></td>" +
+                "<td><input id='serialNumberInput' value='" + data.fullName + "' ></td>" +
+                "<td>" +
+                "<button type='button' onclick='editProfile(" + data.username + ")'>Edit</button>" +
+                "<button type='button' onclick='deleteProfile(" + data.username + ")'>Delete</button>" +
+                "</td>" +
+                "</tr>"
+            );
+        });
+    }
+
+    // Function to edit a user profile
+    function editProfile(id) {
+        var newModel = $("#modelInput").val();
+        var newSerialNumber = $("#serialNumberInput").val();
+
+        if (newModel !== null && newSerialNumber !== null) {
+            var updatedProfile = {
+                model: newModel,
+                serialNumber: newSerialNumber
+            };
+
+            $.ajax({
+                url: "http://localhost:8080/profile" + id,
+                type: "PUT",
+                contentType: "application/json",
+                data: JSON.stringify(updatedProfile),
+                success: function () {
+                    loadUserData();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log("Server response:", xhr.responseText);
+                }
+            });
+        }
+    }
+
+    // Function to delete a user profile
+    function deleteProfile(id) {
+        $.ajax({
+            url: "/profile/" + id,
+            type: "DELETE",
+            success: function () {
+                window.location.href = "/";
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        loadUserData();
+    });
+
+</script>
+</body>
+</html>

@@ -8,15 +8,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import repository.OrderRepository;
 import repository.UserRepository;
+import entity.Orders.Status;
 
 import java.security.Principal;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/recent-orders") // Set a distinct base URL for user-related actions
@@ -49,5 +49,30 @@ public class UserOrderController {
         return "orderList";
     }
 
+
+    @PostMapping("/cancel-order/{orderId}")
+    public String cancelOrder(@PathVariable Long orderId, Model model) {
+
+        Optional<Orders> optionalOrder = orderRepo.findById(String.valueOf(orderId));
+        System.out.println(optionalOrder.get().getId());
+        
+        if (optionalOrder.isPresent()) {
+            Orders order = optionalOrder.get();
+
+            if (order.getStatus() == Status.OPENED ) {
+                order.setStatus(Status.CANCELLED);
+                orderRepo.save(order);
+
+                // Update the orders list in the session attribute
+                List<Orders> ordersList = (List<Orders>) model.getAttribute("orders");
+                ordersList.replaceAll(o -> o.getId().equals(orderId) ? order : o);
+
+                model.addAttribute("orders", ordersList);
+            }
+        }
+
+        // Redirect to the order list page
+        return "redirect:/recent-orders/orders";
+    }
 
 }

@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .authenticationProvider( authenticationProvider )
                 //.headers(headers -> headers.contentTypeOptions(content -> content.disable()))
                 //.cors(cors -> cors.disable())
+                .csrf(csrf -> csrf.disable() )
                 .authorizeHttpRequests((authorizeHttpRequests) ->
                                 authorizeHttpRequests
 //                                        .requestMatchers(

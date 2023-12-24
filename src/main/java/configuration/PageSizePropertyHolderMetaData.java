@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
 @Component
-@ConfigurationProperties(prefix="taco.orders")
+@ConfigurationProperties(prefix="page.orders")
 @Data
 @Validated
 public class PageSizePropertyHolderMetaData {

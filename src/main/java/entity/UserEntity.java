@@ -1,5 +1,6 @@
 package entity;
 
+import authorization.CustomUserDetails;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -21,14 +22,20 @@ public class UserEntity implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(length = 50, unique = true)
     private final String username;
     private final String password;
+    @Column(length = 40)
     private final String fullname;
+    @Column(length = 30)
     private final String street;
+    @Column(length = 20)
     private final String city;
-    @Column(name = "country")
+    @Column(name = "country", length = 20)
     private final String country;
+    @Column(length = 6)
     private final String zip;
+    @Column(length = 20)
     private final String phoneNumber;
 
     @Transient
@@ -56,6 +63,17 @@ public class UserEntity implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public UserEntity(CustomUserDetails userDetails) {
+        this.username = userDetails.getUsername();
+        this.password = userDetails.getPassword();
+        this.fullname = userDetails.getFullName();
+        this.street = userDetails.getStreet();
+        this.city = userDetails.getCity();
+        this.country = userDetails.getCountry();
+        this.zip = userDetails.getZip();
+        this.phoneNumber = userDetails.getPhoneNumber();
     }
 
 }

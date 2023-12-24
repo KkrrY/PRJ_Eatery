@@ -3,7 +3,6 @@ package authorization;
 import entity.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Collection;
 
@@ -37,6 +36,10 @@ public class CustomUserDetails extends User { //making an additional class that 
         this.country = country;
         this.zip = zip;
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getPassword() {
+        return super.getPassword();
     }
 
 

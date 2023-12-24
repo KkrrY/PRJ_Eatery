@@ -26,6 +26,7 @@ public class Burger {
 
     @NotNull
     @Size(min=5, message="Name must be at least 5 characters long")
+    @Column(length = 20)
     private String name;
 
     @NotNull

@@ -34,38 +34,46 @@ public class Orders implements Serializable {
 
     private Double totalPrice;
 
-    @Column(name = "order_name")
+    @Column(name = "order_name", length = 30)
     @NotBlank(message="Delivery( order ) name is required")
     private String orderName;
 
-    @Column(name = "customer_full_name")
+    @Column(name = "customer_full_name", length = 40)
     private String customerFullName;
 
-    @Column(name = "customer_username")
+    @Column(name = "customer_username", length = 50)
     private String userName;
 
+    @Column(length = 30)
     @NotBlank(message="Street is required")
     private String deliveryStreet;
 
+    @Column(length = 20)
     @NotBlank(message="City is required")
     private String deliveryCity;
 
+    @Column(length = 30)
     @NotBlank(message="State is required")
     private String deliveryState;
 
+    @Column(length = 6)
     @NotBlank(message="Zip code is required")
     private String deliveryZip;
 
     @CreditCardNumber(message="Not a valid credit card number")
     private String ccNumber;
 
+    @Column(length = 5)
     @Pattern(regexp="^(0[1-9]|1[0-2])([\\/])([2-9][0-9])$",
             message="Must be formatted MM/YY")
     private String ccExpiration;
 
-    @Column(name = "cc_cvv")
+    @Column(name = "cc_cvv", length = 3)
     @Digits(integer=3, fraction=0, message="Invalid CVV") //value contains exactly three numeric digits.
     private String ccCVV;
+
+    @Enumerated(EnumType.STRING)
+    private Status status = Status.OPENED;
 
     @ManyToOne
     private UserEntity user;
@@ -87,4 +95,7 @@ public class Orders implements Serializable {
         this.placedAt = LocalDateTime.now();
     }
 
+    public enum Status {
+        OPENED, CLOSED,  CANCELLED
+    }
 }

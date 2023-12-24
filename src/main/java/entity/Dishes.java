@@ -27,6 +27,7 @@ public class Dishes { //A class ( JPA table ) made for storing ready-made taco`s
     @Size(min=1, message="Name must be at least 5 characters long")
     private String name;
 
+    @Column(precision = 5)
     private Double price;
 
     private Date createdAt = new Date();

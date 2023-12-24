@@ -26,6 +26,8 @@
 
       <p class="order__info"><i class="fa-solid fa-money-check"></i>Order price: <span class="red__text" th:text="${order.totalPrice + ' UAH'}">NAME</span></p>
 
+      <p class="order__info"><i class="fa-solid fa-barcode"></i>Order status: <span class="red__text" th:text="${order.status}">STATUS</span></p>
+
       <ul class="burgers">
 
         <li th:each="burger : ${order.burgers}">
@@ -46,7 +48,14 @@
 
       </ul>
 
+      <form th:action="@{'/recent-orders/cancel-order/' + ${order.id}}" method="post">
+        <button type="submit" class="cancel-button">Cancel Order</button>
+      </form>
+
     </li>
+
+    <!-- Add cancel order form here ^ -->
+
   </ul>
 </div>
 
