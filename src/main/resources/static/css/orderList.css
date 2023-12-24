@@ -54,9 +54,19 @@ ul{
 }
 .order{
     margin-top: 5%;
-    padding: 4% 5%;
+    padding: 6% 7%;
     border-radius: .4em;
+    position: relative;
+    width: 30vw;
     background: var(--black-shadow);
+}
+
+.order__status{
+    position: absolute;
+    top: 1%;
+    right: 2%;
+    font-size: 1em;
+    color: var(--accent-color);
 }
 
 .order__info{
@@ -69,4 +79,31 @@ ul{
 
 .red__text{
     color: var(--accent-color);
+}
+
+.cancel__form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.form__button{
+    margin-top: 4%;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    background: transparent;
+    font-size: 1.1em;
+    padding: 1% 2%;
+    opacity: .8;
+    border-radius: .4em;
+    outline: none;
+    transition: all .3s linear;
+}
+
+.form__button:hover{
+    background: var(--accent-color);
+    color: white;
+    opacity: 1;
+    cursor: pointer;
+
 }
