@@ -79,6 +79,33 @@ public class DataPreload {
             pizza.setImageSrc("https://pizza-leopoli.lviv.ua/wp-content/uploads/2021/03/about-02-img-1.png");
             dishesRepo.save(pizza);
 
+            Dishes sushi = new Dishes("SUSHI");
+            sushi.setName("Sushi");
+            sushi.setDescription("Default sushi with red fish");
+            sushi.setPrice(100.0);
+            sushi.setImageSrc("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpngimg.com%2Fuploads%2Fsushi%2Fsushi_PNG9231.png&f=1&nofb=1&ipt=4edd1105db768580f10ebc52b1088d8c30d0a1a62b5b80271e896695c756b01d&ipo=images");
+            dishesRepo.save(sushi);
+
+            Dishes bbqRibs = new Dishes("BBQRIB");
+            bbqRibs.setName("Barbeque ribs");
+            bbqRibs.setDescription("Pork barbeque ribs");
+            bbqRibs.setPrice(120.0);
+            bbqRibs.setImageSrc("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpngimg.com%2Fuploads%2Fbarbecue%2Fbarbecue_PNG58.png&f=1&nofb=1&ipt=bd534aa0cef1d8a851165bcae529453d587eefd8ee4fe0afe4b73128f8cb7da4&ipo=images");
+            dishesRepo.save(bbqRibs);
+
+            Dishes padThai = new Dishes("PADTHAI");
+            padThai.setName("Pad Thai");
+            padThai.setDescription("Thai stir-fried noodle dish that typically combines flat rice noodles with ingredients like tofu or shrimp, bean sprouts, peanuts, egg, and lime.");
+            padThai.setPrice(130.0);
+            padThai.setImageSrc("http://tinyurl.com/384hfau4");
+            dishesRepo.save(padThai);
+
+            Dishes caesar = new Dishes("CAESAR");
+            caesar.setName("Caesar Salad");
+            caesar.setDescription("Greek salad with chicken");
+            caesar.setPrice(70.0);
+            caesar.setImageSrc("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.blimpie.com%2Fassets%2Fimages%2Fproduct%2Fgrilledchickencaesarsalad.png&f=1&nofb=1&ipt=520af05fa1e45e63972988148cb278da1776ccd27c21f9bad134d1327073c6e7&ipo=images");
+            dishesRepo.save(caesar);
         };
     }
 

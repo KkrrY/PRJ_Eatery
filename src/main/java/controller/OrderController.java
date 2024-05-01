@@ -1,6 +1,5 @@
 package controller;
 
-import authorization.CustomUserDetails;
 import entity.UserEntity;
 import entity.Orders;
 import jakarta.validation.Valid;
@@ -14,6 +13,7 @@ import repository.DishesRepository;
 import repository.OrderRepository;
 import repository.BurgerRepository;
 import service.DiscountService;
+import service.impl.DiscountServiceImpl;
 
 
 @Controller
@@ -24,27 +24,29 @@ public class OrderController {
     private OrderRepository orderRepo;
     private BurgerRepository burgerRepo;
     private DishesRepository dishesRepo;
+    private DiscountService discountService;
 
-    public OrderController(OrderRepository orderRepo, BurgerRepository burgerRepo, DishesRepository dishesRepo) {
+    public OrderController(OrderRepository orderRepo, BurgerRepository burgerRepo, DishesRepository dishesRepo, DiscountService discountService) {
         this.orderRepo = orderRepo;
         this.burgerRepo = burgerRepo;
         this.dishesRepo = dishesRepo;
+        this.discountService = discountService;
 
     }
 
     @ModelAttribute(name = "discount")
     public String showDiscount () {
-        return String.valueOf( Math.round( (1 - DiscountService.calculateDiscount() ) * 100 ) );
+        return String.valueOf( Math.round( (1 - discountService.calculateDiscount() ) * 100 ) );
     }
 
     @GetMapping("/current")
-    public String orderForm(@AuthenticationPrincipal CustomUserDetails user,
+    public String orderForm(@SessionAttribute UserEntity user,
                             @SessionAttribute Orders order) {
 
         if (user != null) {
             order.setUserName(user.getUsername());
             if (order.getCustomerFullName() == null) {
-                order.setCustomerFullName(user.getFullName());
+                order.setCustomerFullName(user.getFullname());
             }
             if (order.getDeliveryStreet() == null) {
                 order.setDeliveryStreet(user.getStreet());
@@ -75,6 +77,7 @@ public class OrderController {
         order.getDishOrder().forEach(i -> dishesRepo.save(i));
 
         order.setUser(user);
+        order.setOrderName(order.getOrderName());
         orderRepo.save(order);
         order.getBurgers().forEach(i -> i.setOrder(order) ); //update
         burgerRepo.saveAll(order.getBurgers());

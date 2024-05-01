@@ -1,6 +1,5 @@
 package entity;
 
-import authorization.CustomUserDetails;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -39,7 +38,7 @@ public class UserEntity implements UserDetails {
     private final String phoneNumber;
 
     @Transient
-    private String role = "USER";  // Add a role field
+    private String role = "ROLE_USER";  // Add a role field
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.asList(new SimpleGrantedAuthority(role));
@@ -65,16 +64,6 @@ public class UserEntity implements UserDetails {
         return true;
     }
 
-    public UserEntity(CustomUserDetails userDetails) {
-        this.username = userDetails.getUsername();
-        this.password = userDetails.getPassword();
-        this.fullname = userDetails.getFullName();
-        this.street = userDetails.getStreet();
-        this.city = userDetails.getCity();
-        this.country = userDetails.getCountry();
-        this.zip = userDetails.getZip();
-        this.phoneNumber = userDetails.getPhoneNumber();
-    }
 
 }
 

@@ -3,7 +3,6 @@ package controller;
 import entity.Burger;
 import entity.Ingredient;
 import entity.Orders;
-import entity.UserEntity;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,8 @@ import repository.IngredientRepository;
 import entity.Ingredient.Type;
 import repository.UserRepository;
 import service.DiscountService;
+import service.impl.DiscountServiceImpl;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,12 +29,16 @@ public class DesignController {
     private final IngredientRepository ingredientRepo;
     private UserRepository userRepo;
 
+    private DiscountService discountService;
+
     @Autowired
     public DesignController(
             IngredientRepository ingredientRepo,
-            UserRepository userRepo) {
+            UserRepository userRepo,
+            DiscountService discountService) {
         this.ingredientRepo = ingredientRepo;
         this.userRepo = userRepo;
+        this.discountService = discountService;
     }
 
     @ModelAttribute
@@ -50,32 +53,11 @@ public class DesignController {
         }
     }
 
-    @ModelAttribute(name = "order")
-    public Orders order() {
-        Orders order = new Orders();
-        order.setUserName("guest");
-        return order;
-    }
 
     @ModelAttribute(name = "burger")
     public Burger burger() {
         return new Burger();
     }
-
-    @ModelAttribute(name = "user")
-    public UserEntity user(Principal principal) {
-
-        String guestRole = "Guest";
-        String username = principal == null ? guestRole : principal.getName() ;
-        UserEntity user;
-        if (username.equals(guestRole)) {
-        user = new UserEntity("Guest", "Guest", "Guest", "Guest", "Guest", "Guest", "Guest", "Guest");
-        user.setRole("GUEST");
-        }
-        else user = userRepo.findByUsername(username);
-        return user;
-    }
-
 
     @GetMapping
     public String showDesignForm() {
@@ -97,7 +79,7 @@ public class DesignController {
                 (  order.getTotalPrice() == null ? 0 : order.getTotalPrice()   ) +
                 (  burger.getIngredients().stream()
                 .mapToDouble(i -> i.getPrice())
-                .sum()  * DiscountService.calculateDiscount() )
+                .sum()  * discountService.calculateDiscount() )
         );
 
         return "redirect:/orders/current";

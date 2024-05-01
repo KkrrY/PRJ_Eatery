@@ -3,7 +3,7 @@ const logoutLink = document.querySelector("#logoutLink")
 const registrationLink = document.querySelector("#registrationLink");
 const history = document.querySelector("#history");
 renderNavigation();
-setInterval(renderNavigation, 1000 )
+setInterval(renderNavigation, 1000000 )
 
 function renderNavigation(){
      fetch("/user-role").then(resp => resp.json()).then(data =>{

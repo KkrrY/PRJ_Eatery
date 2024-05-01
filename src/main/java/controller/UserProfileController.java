@@ -1,6 +1,5 @@
 package controller;
 
-import authorization.CustomUserDetails;
 import entity.UserEntity;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -15,7 +14,7 @@ import repository.UserRepository;
 @Controller
 public class UserProfileController {
     @GetMapping
-    public ResponseEntity<CustomUserDetails> showUserData(@AuthenticationPrincipal CustomUserDetails user) {
+    public ResponseEntity<UserEntity> showUserData(@SessionAttribute UserEntity user) {
         return new ResponseEntity<>(user, user == null ? HttpStatus.BAD_REQUEST : HttpStatus.OK);
     }
 

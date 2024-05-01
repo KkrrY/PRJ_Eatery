@@ -1,19 +1,16 @@
 package controller;
 
 import entity.*;
-import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import repository.DishesRepository;
-import repository.IngredientRepository;
 import repository.UserRepository;
 import service.DiscountService;
+import service.impl.DiscountServiceImpl;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,12 +23,15 @@ public class DishesController {
     private final DishesRepository dishesRepo;
     private final UserRepository userRepo;
 
+    private final DiscountService discountService;
     @Autowired
     public DishesController(
             DishesRepository dishesRepo,
-            UserRepository userRepo) {
+            UserRepository userRepo,
+            DiscountService discountService) {
         this.dishesRepo = dishesRepo;
         this.userRepo = userRepo;
+        this.discountService = discountService;
     }
 
     @ModelAttribute
@@ -42,29 +42,10 @@ public class DishesController {
         model.addAttribute("dishes", dishes );
     }
 
-    @ModelAttribute(name = "order")
-    public Orders order() {
-        Orders order = new Orders();
-        order.setUserName("guest");
-        return order;
-    }
 
     @ModelAttribute(name = "dish")
     public Dishes dish() {
         return new Dishes();
-    }
-
-    @ModelAttribute(name = "user")
-    public UserEntity user(Principal principal) {
-        String guestRole = "Guest";
-        String username = principal == null ? guestRole : principal.getName() ;
-        UserEntity user;
-        if (username.equals(guestRole)) {
-            user = new UserEntity("Guest", "Guest", "Guest", "Guest", "Guest", "Guest", "Guest", "Guest");
-            user.setRole("GUEST");
-        }
-        else user = userRepo.findByUsername(username);
-        return user;
     }
 
 
@@ -86,7 +67,7 @@ public class DishesController {
         order.addDish(dish);
         order.setTotalPrice(
                 (  order.getTotalPrice() == null ? 0 : order.getTotalPrice()   ) +
-                        ( dish.getPrice() * DiscountService.calculateDiscount())
+                        ( dish.getPrice() * discountService.calculateDiscount())
         );
 
         return "redirect:/orders/current";
